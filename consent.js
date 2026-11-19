@@ -7,13 +7,16 @@
   const companionField = 'entry.195624935';
   const returnField = 'entry.1430566721';
   const referralField = 'entry.212359428';
-  const referralInputs = Array.from(form.elements).filter(el => el.name === referralField);
+  const inputs = Array.from(form.elements).filter(el => el instanceof HTMLInputElement);
+  const referralInputs = inputs.filter(el => el.name === referralField);
+  const textFields = inputs.filter(el => el.type === 'text');
   const todayKst = new Date(Date.now() + 9 * 60 * 60 * 1000).toISOString().slice(0, 10);
   const birthday = form.elements.namedItem('entry.817041516');
   if (todayKst.startsWith('2026-')) birthday.max = '2007' + todayKst.slice(4);
   const telephone = form.elements.namedItem('entry.3274608');
   const submitButton = form.querySelector('button[type="submit"]');
   const status = document.getElementById('survey-status');
+  const missingLink = document.getElementById('missing-field-link');
   const applicationId = form.elements.namedItem('applicationId');
   if (!applicationId.value) applicationId.value = crypto.randomUUID();
   let sending = false;
@@ -46,26 +49,34 @@
     }
   }
 
-  for (const wrapper of detailFields) {
-    const group = form.elements.namedItem(wrapper.dataset.detailFor);
-    for (const radio of group) radio.addEventListener('change', () => updateDetail(wrapper));
-    updateDetail(wrapper);
-  }
-  for (const input of referralInputs) input.addEventListener('change', updateReferrals);
-  const textFields = Array.from(form.elements).filter(el => el.type === 'text');
-  for (const field of textFields) field.addEventListener('input', () => updateText(field));
-  telephone.addEventListener('change', formatPhone);
-  telephone.addEventListener('blur', formatPhone);
-  updateReferrals();
-
-  function resetButton() {
-    sending = false;
-    submitButton.disabled = false;
-    status.textContent = '';
+  function updateSubmitState() {
     for (const wrapper of detailFields) updateDetail(wrapper);
+    for (const field of textFields) updateText(field);
     updateReferrals();
+
+    const missing = inputs.find(field => field.willValidate && !field.validity.valid);
+    submitButton.disabled = sending || Boolean(missing);
+    if (missingLink) {
+      missingLink.hidden = sending || !missing;
+      if (missing) missingLink.hash = missing.id;
+    }
+    let message = '모든 필수 항목을 완료했습니다.';
+    if (sending) message = '신청서를 보내고 있습니다.';
+    else if (missing) message = '필수 문항에 답하고 동의 항목을 모두 체크해 주세요.';
+    if (status.textContent !== message) status.textContent = message;
   }
-  window.addEventListener('pageshow', resetButton);
+
+  // Most controls belong to this form through their form attribute and sit outside it.
+  function onEdit(event) {
+    if (event.target.form === form) updateSubmitState();
+  }
+  telephone.addEventListener('change', formatPhone);
+  document.addEventListener('input', onEdit);
+  document.addEventListener('change', onEdit);
+  window.addEventListener('pageshow', () => {
+    sending = false;
+    updateSubmitState();
+  });
 
   form.addEventListener('formdata', event => {
     const answers = event.formData;
@@ -82,15 +93,14 @@
       return;
     }
     formatPhone();
-    for (const field of textFields) updateText(field);
-    updateReferrals();
-    if (!form.reportValidity()) {
+    updateSubmitState();
+    if (submitButton.disabled) {
       event.preventDefault();
+      form.reportValidity();
       return;
     }
     sending = true;
-    submitButton.disabled = true;
-    status.textContent = '신청서를 보내고 있습니다.';
+    updateSubmitState();
   });
-  resetButton();
+  updateSubmitState();
 })();

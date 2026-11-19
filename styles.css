@@ -36,7 +36,7 @@ header {background: var(--paper); border-bottom: 1px solid #cfdad8}
 .header nav a:hover {color: var(--teal); text-decoration: underline}
 .head-cta, .hero-cta, .primary {display: inline-flex; align-items: center; justify-content: center; min-height: 2.8rem; padding: .5rem 1.25rem; font-size: .95rem; font-weight: 750; border-radius: .35rem; line-height: 1.45}
 .head-cta {background: var(--ink); color: white}
-.head-cta:hover, .primary:hover {background: #264d58; color: white}
+.head-cta:hover {background: #264d58; color: white}
 .hero {position: relative; isolation: isolate; background: #102f3c; overflow: hidden; color: white}
 .hero-image, .hero-shade {position: absolute; z-index: -1; inset: 0; height: 100%}
 .hero-image {left: auto; width: 75%; object-fit: cover; object-position: 50% 58%}
@@ -116,6 +116,7 @@ figcaption {font-size: .88rem; color: var(--muted); margin-top: .4rem}
 .guide-choice {margin-top: 1rem}
 #survey-status:not(:empty) {margin-top: .75rem}
 #survey-status:empty {display: none}
+#missing-field-link {color: var(--gold)}
 
 .response small {font-size: .85rem; font-weight: 630; color: #56686c}
 .response span {font-weight: 650}
@@ -138,12 +139,12 @@ fieldset.survey-field legend {padding-top: 1.05rem}
 .survey-input:focus-visible {outline: 3px solid var(--teal); outline-offset: 2px}
 .detail-field {margin-top: .75rem}
 .detail-field[hidden] {display: none}
-.primary:disabled {cursor: default; opacity: .7}
+.primary:disabled {cursor: not-allowed; background: #c5cecf; color: #445459}
 .apply-panel {padding: clamp(1.4rem,3.8vw,2.6rem); background: var(--ink); color: #e9f0f2; margin-top: 2rem; border-radius: .35rem}
 .apply-panel .eyebrow {color: #e7c888}
 .apply-panel h3 {font-size: 1.75rem; color: white; margin: .5rem 0}
 .primary {border: 0; background: var(--gold); color: var(--ink); margin-top: .65rem; padding: .8rem 1.2rem}
-.primary:hover {background: #ffe1a6; color: var(--ink)}
+.primary:enabled:hover {background: #ffe1a6; color: var(--ink)}
 footer {border-top: 1px solid var(--line); background: #eaf0ed; padding-block: 1.6rem}
 .footer {display: flex; gap: 1.5rem; align-items: center; font-size: .9rem}
 .footer .brand img {width: 5.7rem}

@@ -287,7 +287,7 @@
 </fieldset>
 <fieldset class="survey-field" data-question="25" aria-describedby="referral-help">
   <legend>무엇을 보고 신청하셨나요?</legend>
-  <p id="referral-help" class="field-help">해당하는 경로를 모두 선택해 주세요.</p>
+  <p id="referral-help" class="field-help">한 개 이상 선택해 주세요. 여러 경로에 해당하면 모두 선택할 수 있습니다.</p>
   <div class="choice-options">
     <label for="answer-25-1" class="choice-label">
       <input id="answer-25-1" type="checkbox" name="entry.212359428" value="업드림 인스타" form="application-handoff">
@@ -323,8 +323,9 @@
   <form id="application-handoff" action="https://mongcance-winter-seven.upperguide8.chatgpt.site/api/applications" method="post">
     <input type="hidden" name="noticeVersion" value="mongcance7-2026-11-19-v1">
     <input type="hidden" name="applicationId">
-    <button class="primary" type="submit" disabled>신청서 제출하기</button>
+    <button class="primary" type="submit" aria-describedby="survey-status" disabled>신청서 제출하기</button>
     <p id="survey-status" role="status"></p>
+    <a id="missing-field-link" href="#guide-consent" hidden>미완료 항목으로 이동</a>
     <noscript><p>신청서를 제출하려면 브라우저의 자바스크립트를 켜 주세요.</p></noscript>
   </form>
 </div></section></div></div></main><footer><div class="wrap footer"><a class="brand" href="#top" aria-label="업드림 몽캉스 처음으로"><img src="assets/updream.png" width="125" height="32" alt="업드림"></a><span>업드림 여행사 · 몽캉스 7기 : 겨울 홉스골</span>
@@ -332,4 +333,4 @@
     <a href="./admin/">운영자 로그인</a>
     <a href="#top">맨 위로</a>
   </nav>
-</div></footer><script src="navigation.js"></script><script src="consent.js" defer></script></body></html>
+</div></footer><script src="navigation.js"></script><script src="consent.js?v=2" defer></script></body></html>
