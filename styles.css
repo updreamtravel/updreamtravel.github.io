@@ -47,14 +47,15 @@ header {background: var(--paper); border-bottom: 1px solid #cfdad8}
 .kicker {display: flex; align-items: center; gap: .9rem; color: #f0cc8c; font-size: .86rem}
 .kicker::before {content: ""; width: 2.55rem; height: 2px; background: currentColor}
 .hero h1 {margin: 1rem 0 1.25rem; font-size: clamp(3.4rem, 5.9vw, 6rem); color: white; letter-spacing: -.078em; font-weight: 850; line-height: 1.13}
-.cohort {font-size: clamp(1rem, 1.5vw, 1.45rem); font-weight: 650; display: inline-block; vertical-align: top; border: 1px solid #e6c385; color: #f6dca9; line-height: 1.4; padding: .07em .45em .11em; margin: .32em 0 0 .48em; border-radius: 2rem; letter-spacing: -.03em}
+.hero-destination {display: block}
 .hero-desc {font-size: clamp(1.08rem,1.55vw,1.45rem); margin: 0; line-height: 1.65; font-weight: 520; letter-spacing: -.035em}
 .hero-cta {margin-top: 1.65rem; background: var(--gold); color: #18343c; min-height: 3rem; padding-inline: 1.5rem}
 .hero-cta:hover {background: #ffe1a6; color: #15323c}
 .photo-label {position: absolute; bottom: 1.2rem; right: 0; background: #153340e6; color: white; padding: .27rem .65rem; font-size: .75rem}
 .facts {display: grid; grid-template-columns: 1.4fr 1fr .9fr 1.1fr; border-bottom: 1px solid var(--line); padding-block: 1.75rem}
 .facts div + div {border-left: 1px solid var(--line); padding-left: clamp(1rem, 3.5vw, 3.2rem)}
-.facts span, .facts strong {display: block}
+.facts span, .facts strong, .facts small {display: block}
+.facts small {font-size: .875rem; line-height: 1.45; margin-top: .2rem; color: var(--muted)}
 .facts span {font-size: .9rem; color: var(--muted); font-weight: 600}
 .facts strong {font-size: clamp(1rem,1.7vw,1.45rem); color: var(--ink); line-height: 1.5; letter-spacing: -.035em; margin-top: .12rem}
 .priority {display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; margin-top: 1.75rem; padding: 1rem 1.55rem; background: #edf3f1; border-left: .25rem solid var(--teal); border-radius: 0 .32rem .32rem 0}
@@ -105,6 +106,17 @@ figcaption {font-size: .88rem; color: var(--muted); margin-top: .4rem}
 .doc-item h3:first-child {margin: .15rem 0 .45rem}
 .doc-item p {margin: .35rem 0; white-space: pre-line}
 .response {display: flex; flex-wrap: wrap; gap: .35rem .85rem; align-items: baseline; margin-top: .65rem; color: #365454; font-size: .95rem}
+.application-choice {min-inline-size: 0; margin: .85rem 0 0; padding: 0; border: 0}
+.application-choice legend {padding: 0; color: var(--muted); font-size: .875rem; font-weight: 650}
+.choice-options {display: flex; flex-wrap: wrap; gap: .4rem .65rem}
+.choice-label {display: inline-flex; align-items: flex-start; gap: .65rem; padding: .58rem .85rem; min-height: 2.75rem; margin-top: .25rem; border: 1px solid #a2b7b5; border-radius: .35rem; background: #fff; color: var(--ink); font-size: 1rem; font-weight: 650; line-height: 1.5; cursor: pointer}
+.choice-label input {flex: none; width: 1.16rem; height: 1.16rem; margin: .17rem 0 0; accent-color: var(--teal)}
+.choice-label:has(input:checked) {background: #e8f3f0; border-color: var(--teal)}
+.choice-label:focus-within {outline: 3px solid #b46116; outline-offset: 3px}
+.guide-choice {margin-top: 1rem}
+#handoff-status:not(:empty) {margin-top: .75rem}
+#handoff-status:empty {display: none}
+
 .response small {font-size: .85rem; font-weight: 630; color: #56686c}
 .response span {font-weight: 650}
 table {width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; text-align: left}
@@ -120,7 +132,7 @@ tbody tr:nth-child(2n) {background: #eef3f1}
 .apply-panel {padding: clamp(1.4rem,3.8vw,2.6rem); background: var(--ink); color: #e9f0f2; margin-top: 2rem; border-radius: .35rem}
 .apply-panel .eyebrow {color: #e7c888}
 .apply-panel h3 {font-size: 1.75rem; color: white; margin: .5rem 0}
-.primary {background: var(--gold); color: var(--ink); margin-top: .65rem; padding: .8rem 1.2rem}
+.primary {border: 0; background: var(--gold); color: var(--ink); margin-top: .65rem; padding: .8rem 1.2rem}
 .primary:hover {background: #ffe1a6; color: var(--ink)}
 footer {border-top: 1px solid var(--line); background: #eaf0ed; padding-block: 1.6rem}
 .footer {display: flex; gap: 1.5rem; align-items: center; font-size: .9rem}
@@ -183,14 +195,25 @@ iframe {width: 100%; height: 80vh; height: 80dvh; display: block; border: 1px so
  :root {background: white; color: black; font-size: 11pt}
  header,footer,.skip,.priority,.toc,.hero-image,.hero-shade,.hero-cta,.photo-label,.gallery,.apply-panel,.print {display: none}
  .wrap {width: 100%; max-width: none}
- .hero,.hero h1,.kicker,.cohort,.hero-desc {background: white; color: black}
+ .hero,.hero h1,.kicker,.hero-desc {background: white; color: black}
  .hero-inner {min-height: 0; padding: 0}
  .hero h1 {font-size: 24pt; margin: .4rem 0}
  .body-grid,.body-content {display: block; max-width: none; margin: 1.2rem 0}
  .body-content section {margin-bottom: 1rem; padding-bottom: 1rem}
  h2,h3,h4,caption {break-after: avoid}
- tr,.response {break-inside: avoid}
+ tr,.response,.application-choice {break-inside: avoid}
  th,thead th {color: black}
  .box,.attention,.note {background: white; border: 1px solid #777}
  .eyebrow {color: black}
 }
+
+.form-main > h1 {margin: .3rem 0; color: var(--ink); font-size: clamp(1.65rem, 4vw, 2.35rem); line-height: 1.35; letter-spacing: -.045em}
+.form-main > .box, #google-application {margin-top: 1.4rem}
+.form-main .box h2, #google-application h2 {font-size: 1.5rem}
+#prepare-companion fieldset {border: 0; padding: 0; margin: 0; min-width: 0}
+#prepare-companion legend {font-weight: 750; font-size: 1.25rem; color: var(--ink)}
+#prepare-companion .choice-options {margin-block: .7rem}
+#companion-names-label {display: grid; gap: .4rem; max-width: 27rem; font-weight: 650}
+#companion-names {font: inherit; border: 1px solid #8fa4a4; padding: .6rem .8rem; border-radius: .3rem; background: white; width: 100%}
+#prepare-companion .intake-note {margin-top: 1rem}
+.form-main [hidden] {display: none !important}
