@@ -147,7 +147,8 @@ fieldset.survey-field legend {padding-top: 1.05rem}
 footer {border-top: 1px solid var(--line); background: #eaf0ed; padding-block: 1.6rem}
 .footer {display: flex; gap: 1.5rem; align-items: center; font-size: .9rem}
 .footer .brand img {width: 5.7rem}
-.footer>a:last-child {margin-left: auto}
+.footer nav {display: flex; align-items: center; gap: 1.25rem; margin-left: auto}
+.footer nav a {display: inline-flex; align-items: center; min-height: 2.75rem; white-space: nowrap}
 .form-main {width: min(56rem,calc(100% - 2rem)); margin: 1.5rem auto}
 .form-heading {display: flex; align-items: center; justify-content: space-between; gap: 1rem}
 .form-heading h1 {font-size: 1.9rem; margin: .2rem 0; color: var(--ink); letter-spacing: -.05em}
