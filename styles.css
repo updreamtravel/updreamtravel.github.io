@@ -114,8 +114,8 @@ figcaption {font-size: .88rem; color: var(--muted); margin-top: .4rem}
 .choice-label:has(input:checked) {background: #e8f3f0; border-color: var(--teal)}
 .choice-label:focus-within {outline: 3px solid #b46116; outline-offset: 3px}
 .guide-choice {margin-top: 1rem}
-#handoff-status:not(:empty) {margin-top: .75rem}
-#handoff-status:empty {display: none}
+#survey-status:not(:empty) {margin-top: .75rem}
+#survey-status:empty {display: none}
 
 .response small {font-size: .85rem; font-weight: 630; color: #56686c}
 .response span {font-weight: 650}
@@ -128,7 +128,17 @@ tbody tr:nth-child(2n) {background: #eef3f1}
 .textlink {font-weight: 650}
 #privacy .doc-item + .doc-item {margin-top: 1.5rem}
 .field-list {border-top: 1px solid var(--line); margin: 1rem 0 1.5rem}
-.field-list .doc-item {padding: .72rem 0}
+.survey-field {display: block; min-width: 0; margin: 0; padding: 1.05rem 0 1.25rem; border: 0; border-bottom: 1px solid var(--line)}
+.survey-field legend, .survey-field > label, .detail-field > label {display: block; padding: 0; color: var(--ink); font-weight: 700; font-size: 1rem; line-height: 1.65; white-space: pre-line}
+fieldset.survey-field {position: relative; padding-top: .35rem}
+fieldset.survey-field legend {padding-top: 1.05rem}
+.survey-field .choice-options {margin-top: .25rem}
+.survey-field .field-help {margin: 0; color: var(--muted); font-size: .9rem}
+.survey-input {display: block; min-width: 0; width: min(100%,32rem); min-height: 2.9rem; margin-top: .4rem; padding: .55rem .75rem; border: 1px solid #899e9d; border-radius: .35rem; background: white; color: var(--ink); font: inherit; line-height: 1.5}
+.survey-input:focus-visible {outline: 3px solid var(--teal); outline-offset: 2px}
+.detail-field {margin-top: .75rem}
+.detail-field[hidden] {display: none}
+.primary:disabled {cursor: default; opacity: .7}
 .apply-panel {padding: clamp(1.4rem,3.8vw,2.6rem); background: var(--ink); color: #e9f0f2; margin-top: 2rem; border-radius: .35rem}
 .apply-panel .eyebrow {color: #e7c888}
 .apply-panel h3 {font-size: 1.75rem; color: white; margin: .5rem 0}
